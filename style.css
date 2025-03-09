@@ -1,0 +1,515 @@
+/* Basic Reset and Body Styles */
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #f8f8f8;
+    background-color: #000;
+    margin: 0; /* Reset default body margin */
+    padding: 0; /* Reset default body padding */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+html {
+    scroll-behavior: smooth; /* Enable smooth scrolling for anchor links */
+}
+
+/* Header and Navigation Styles */
+header {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    position: sticky; /* Make header stick to the top */
+    top: 0;          /* Stick to the top of the viewport */
+    z-index: 100;     /* Ensure header is above other content */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f0f0f0;
+    font-weight: normal;
+    font-size: 0.75em;
+    padding: 10px 15px;
+    border-radius: 0;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    border-bottom: none;
+}
+
+nav a:hover {
+    color: #fff;
+    opacity: 1;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* Hero Section Styles */
+before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+    z-index: 1; /* Ensure overlay is behind text content */
+}
+#hero {
+    /* **Make Hero Full Viewport Height** */
+    height: 100vh; /* 100% of viewport height */
+    min-height: 600px; /* Minimum height to ensure content is visible on very tall screens */
+    display: flex; /* Enable Flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    text-align: center;
+    padding: 20px; /* Keep some padding for smaller screens */
+    color: #f8f8f8;
+    position: relative; /* For background image positioning */
+    overflow: hidden; /* To contain background image */
+
+    /* **Background Image (Add your own image URL)** */
+    background-image: url('hussein.jpeg'); /* Replace with your image URL */
+    background-size: cover; /* Cover the entire hero area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    /* **Optional: Add a subtle overlay to make text more readable on background image** */
+}
+
+/* **Corrected Pseudo-element Selector for Overlay (Standard CSS)** */
+#hero::before { /*  <---  This is where the 'before' block goes, using #hero::before selector */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+    z-index: 1; /* Ensure overlay is behind text content */
+}
+
+/* **Ensure hero content is above the overlay** */
+.hero-content {
+    position: relative; /* Position hero content above the overlay */
+    z-index: 2; /* Ensure content is on top of overlay */
+    opacity: 0; /* Initially hidden for animation */
+    animation: fadeIn 1.5s ease-out forwards 0.5s; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#hero h1 {
+    font-size: 4em;
+    margin-bottom: 15px;
+    color: #f8f8f8;
+    letter-spacing: -1px;
+}
+
+.hero-content .profession {
+    font-size: 1.2em;
+    color: #ccc;
+    margin-bottom: 30px;
+    font-weight: normal;
+}
+
+.hero-content .view-work-button {
+    display: inline-block;
+    background-color: #1e85b5;
+    color: #fff;
+    padding: 14px 30px;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: normal;
+    transition: background-color 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.hero-content .view-work-button:hover {
+    background-color: #135d7e;
+}
+
+/* Projects Section Styles */
+#projects-section {
+    background-color: #000;
+    padding: 80px 20px;
+    color: #f8f8f8;
+    margin-bottom: 100px;
+}
+
+.projects-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.projects-container h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #f8f8f8;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.project-item {
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0; /* Initially hidden for animation */
+    transform: translateY(30px); /* Start slightly नीचे for slide-up animation */
+    animation: fadeInUp 1s ease-out forwards; /* Fade-in and slide-up animation */
+}
+
+/* Stagger animation for project items */
+.projects-grid .project-item:nth-child(2) { animation-delay: 0.2s; }
+.projects-grid .project-item:nth-child(3) { animation-delay: 0.4s; }
+.projects-grid .project-item:nth-child(4) { animation-delay: 0.6s; }
+.projects-grid .project-item:nth-child(5) { animation-delay: 0.8s; }
+/* Add more nth-child delays if needed */
+
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Slide up to original position */
+    }
+}
+
+
+.project-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.project-item a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-thumbnail {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #333;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-title {
+    font-size: 1.3em;
+    margin: 20px;
+    color: #f8f8f8;
+}
+
+.project-description {
+    font-size: 1em;
+    margin: 0 20px 20px;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* About Me Section Styles */
+#about-section {
+    background-color: #000;
+    padding: 80px 20px;
+    color: #f8f8f8;
+}
+
+section#about-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #f8f8f8;
+    text-align: center;
+}
+
+.about-summary,
+.about-skills,
+.about-experience,
+.about-education {
+    margin-bottom: 30px;
+    background-color: #222;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Initially hidden for animation */
+    transform: translateX(-50px); /* Start slightly to the left for slide-in animation */
+    animation: slideInLeft 1.2s ease-out forwards; /* Slide-in from left animation */
+}
+
+/* Stagger animation for About Me section boxes */
+#about-section .about-summary { animation-delay: 0s; }
+#about-section .about-skills { animation-delay: 0.2s; }
+#about-section .about-experience { animation-delay: 0.4s; }
+#about-section .about-education { animation-delay: 0.6s; }
+
+
+@keyframes slideInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0); /* Slide in to original position */
+    }
+}
+
+
+.about-summary h3,
+.about-skills h3,
+.about-experience h3,
+.about-education h3 {
+    font-size: 2.0em;
+    margin-bottom: 15px;
+    color: #f8f8f8;
+    text-align: center;
+}
+
+.about-experience .experience-item,
+.about-education .education-item {
+    margin-bottom: 20px;
+}
+
+.about-experience h4,
+.about-education h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #ccc;
+    font-weight: bold;
+}
+
+.about-skills ul,
+.about-experience ul,
+.about-education ul {
+    list-style: square;
+    padding-left: 25px;
+}
+
+.about-skills li,
+.about-experience li,
+.about-education li {
+    margin-bottom: 8px;
+    font-size: 1em;
+    color: #f0f0f0;
+}
+
+.about-summary p,
+.about-experience p,
+.about-education p {
+    font-size: 1em;
+    color: #f0f0f0;
+    line-height: 1.5;
+}
+
+.about-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Contact Section Styles */
+#contact-section {
+    background-color: #000;
+    padding: 80px 20px;
+    color: #f8f8f8;
+    margin-bottom: 0; /* No margin at the bottom of the contact section */
+}
+
+section#contact-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #f8f8f8;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: #222;
+    padding: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+
+.contact-container p {
+    font-size: 1em;
+    color: #f0f0f0;
+    margin-bottom: 25px;
+}
+
+.contact-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-links li {
+    margin-bottom: 15px;
+}
+
+.contact-link {
+    display: inline-block;
+    color: #f0f0f0;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 30px; /* Increased padding for more visual space in footer */
+    background-color: #111;
+    color: #aaa;
+    border-top: 1px solid #333;
+    font-size: 0.9em; /* Slightly increased font size for footer text */
+    letter-spacing: 0.5px; /* Added letter-spacing for better readability */
+}
+
+
+/* Media Queries for Responsiveness */
+
+/* For tablets and larger smartphones (调整断点 as needed) */
+@media (max-width: 768px) {
+    header {
+        padding: 20px; /* Adjust header padding for smaller screens */
+        flex-direction: column; /* Stack logo and nav on smaller screens */
+        text-align: center;     /* Center align header content */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack nav links vertically on smaller screens */
+        align-items: center;    /* Center align nav links */
+    }
+
+    nav li {
+        margin: 0 15px 15px 15px; /* Add margin around nav items when stacked */
+    }
+
+    #hero {
+        padding: 120px 20px; /* Adjust hero padding for smaller screens */
+    }
+
+    #hero h1 {
+        font-size: 3em; /* Adjust hero title size for smaller screens */
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr; /* Stack projects to single column on smaller screens */
+    }
+
+    .about-container,
+    .contact-container {
+        padding: 30px; /* Adjust padding for About Me and Contact boxes on smaller screens */
+    }
+
+    .about-summary,
+    .about-skills,
+    .about-experience,
+    .about-education {
+        padding: 25px; /* Adjust padding for About Me subsection boxes on smaller screens */
+    }
+
+    section#contact-section h2,
+    section#about-section h2,
+    .projects-container h2 {
+        font-size: 2.2em; /* Adjust section title sizes for smaller screens */
+        margin-bottom: 30px; /* Adjust section title margin for smaller screens */
+    }
+
+    footer {
+        padding: 25px 20px; /* Adjust footer padding for smaller screens */
+        font-size: 0.85em; /* Slightly reduce footer font size on smaller screens */
+    }
+}
+
+/* For even smaller screens (e.g., very small smartphones) */
+@media (max-width: 480px) {
+    header {
+        padding: 15px; /* Further reduce header padding for very small screens */
+    }
+
+    nav a {
+        font-size: 0.7em; /* Further reduce nav link font size on very small screens */
+        padding: 8px 12px; /* Adjust nav link padding */
+    }
+
+    #hero {
+        padding: 100px 15px; /* Further reduce hero padding for very small screens */
+    }
+
+    #hero h1 {
+        font-size: 2.5em; /* Further reduce hero title size for very small screens */
+    }
+
+    .hero-content .profession,
+    .hero-content .view-work-button {
+        font-size: 1em; /* Adjust profession and button font size on very small screens */
+    }
+
+
+    .projects-container h2,
+    section#about-section h2,
+    section#contact-section h2 {
+        font-size: 2em; /* Further reduce section title sizes for very small screens */
+    }
+
+    .about-container,
+    .contact-container,
+    .about-summary,
+    .about-skills,
+    .about-experience,
+    .about-education,
+    .project-item {
+        border-radius: 6px; /* Slightly less rounded corners on very small screens */
+        padding: 20px;      /* Reduce padding for boxes on very small screens */
+    }
+
+    footer {
+        padding: 20px 15px; /* Further reduce footer padding for very small screens */
+        font-size: 0.8em;  /* Further reduce footer font size on very small screens */
+    }
+}
